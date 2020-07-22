@@ -30,7 +30,18 @@ class CompaniesController < ApplicationController
     else
       render :edit
     end
-  end  
+  end
+
+
+  def destroy
+    # Using destroy instead delete because destroy deletes associated records
+    if @company.destroy
+      redirect_to companies_path, notice: "Successfully deleted #{@company.name}."
+    else
+      flash[:error] = "#{@company.errors.full_messages.join(', ')}"
+      redirect_to company_path(@company)
+    end
+  end
 
   private
 
