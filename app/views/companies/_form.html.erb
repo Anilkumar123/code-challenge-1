@@ -1,6 +1,15 @@
 <div class="py-5">
   <%= form_for @company do |f| %>
 
+    <%if @company.errors.messages.present?%>
+      <div>
+        <p> Please correct below errors<p>
+        <% @company.errors.messages.each do |key, value| %>
+          <p style="color:red"><%="#{key} : #{value.first}"%></p>
+        <%end%>
+      </div>
+    <%end%>
+
     <div class="row my-lg-3">
       <div class="col-lg-3">
         <label><strong>Name</strong><br><small class="text-muted">The public DBA, or Common name of the organization</small></label>
