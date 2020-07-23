@@ -8,8 +8,8 @@ class Company < ApplicationRecord
   def get_city_and_state
     zipcode = Zipcode.find_by_code self.zip_code
     if zipcode.present?
-      self.city = data[:city]
-      self.state = data[:state]
+      self.city = zipcode[:city]
+      self.state = zipcode[:state]
     end
   end
 end
